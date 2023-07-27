@@ -4,7 +4,7 @@ public interface Constants {
 	interface WEB_CONFIG {
 		String WEB_URL = "https://test.strategyexe.com/users/login";
 		String NODE_URL = "http://13.55.24.250:4444/wd/hub";
-		String NODE_URL_LOCAL = "http://192.168.1.64:4444/wd/hub";
+		String NODE_URL_LOCAL = "http://192.168.1.91:4444/wd/hub";
 		String WINDOW_START_STATE = "--start-maximized";
 		String WEB_PAGE_STATE = "return document.readyState";
 		String WEB_PAGE_STATUS = "complete";

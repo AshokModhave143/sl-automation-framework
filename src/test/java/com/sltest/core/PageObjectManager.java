@@ -11,8 +11,6 @@ import com.strategyX.pageObjects.IdeasAndProbsPage;
 import com.strategyX.pageObjects.RiskPage;
 import com.strategyX.pageObjects.SuccessFactorPage;
 import com.strategyX.pageObjects.TacticalProjectsPage;
-import com.boabco.pageObjects.LoginPage;
-import com.boabco.pageObjects.PersonalDetailsPage;
 
 public class PageObjectManager {
 	private WebDriver driver;
@@ -59,20 +57,6 @@ public class PageObjectManager {
 	
 	public ApprovalsPage getApprovalsPage() throws IOException {
 		return (approvalsPage == null) ? approvalsPage = new ApprovalsPage(driver) : approvalsPage;
-	}
-	
-	
-	
-	// BoabCo
-	private LoginPage boabCologinPage;
-	public LoginPage getBoabCo_LoginPage() throws IOException {
-		return (boabCologinPage == null) ? boabCologinPage = new LoginPage(driver) : boabCologinPage;
-	}
-	
-	private PersonalDetailsPage personalDetailsPage;
-	public PersonalDetailsPage getBoabCo_personalDetailsPage() throws IOException {
-		return (personalDetailsPage == null) ? personalDetailsPage = new PersonalDetailsPage(driver) : personalDetailsPage;
-	}
-	
+	}	
 
 }

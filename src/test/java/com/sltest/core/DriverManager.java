@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.sltest.helper.DriverType;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 //import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverManager {
@@ -29,7 +32,25 @@ public class DriverManager {
 
 	// Create browser driver object
 	public WebDriver createWebDriver(String browserName) throws MalformedURLException {
-		 return new RemoteWebDriver(new URL(Constants.WEB_CONFIG.NODE_URL), capabilityFactory.getCapabilities(browserName));
+//		 return new RemoteWebDriver(new URL("http://www.google.com"), capabilityFactory.getCapabilities(browserName));
+		
+		Capabilities capabilities = capabilityFactory.getCapabilities(browserName);
+		DriverType type = DriverType.valueOf(browserName.toUpperCase());
+		
+		switch(type) {
+			case CHROME:
+				// set up chrome driver
+				WebDriverManager.chromedriver().setup();
+				return new ChromeDriver(capabilities);
+			case FIREFOX:
+				WebDriverManager.firefoxdriver().setup();
+				return new FirefoxDriver(capabilities);
+			case IE:
+				WebDriverManager.iedriver().setup();
+				return new InternetExplorerDriver();
+			default:
+				throw new IllegalArgumentException("Unsupported browser type");
+		}
 	}
 
 	// get driver object

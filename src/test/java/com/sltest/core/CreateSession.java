@@ -13,7 +13,7 @@ import com.sltest.core.DriverManager;
 public class CreateSession {
 	
 	// Thread instance that contains WebDriver instance is used to perform browser interactions
-	private static ThreadLocal<RemoteWebDriver> remoteDriver = new ThreadLocal<>();
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	
 	// This is logger object used for logging - TODO: move to another file
 	private static Logger logger = Logger.getLogger(CreateSession.class.getName());
@@ -28,7 +28,7 @@ public class CreateSession {
 		
 		// Get the driver instance
 		DriverManager driverManager = new DriverManager();
-		remoteDriver.set((RemoteWebDriver)driverManager.getWebDriver(browserName));
+		driver.set((RemoteWebDriver)driverManager.getWebDriver(browserName));
 				
 		// Default settings for driver
 		getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -37,8 +37,8 @@ public class CreateSession {
 		
 	// Returns the webdriver for current thread
 	public static WebDriver getWebDriver() {
-		System.out.println("WebDriver: " + remoteDriver.get());
-		return remoteDriver.get();
+		System.out.println("WebDriver: " + driver.get());
+		return driver.get();
 	}
 	
 	@AfterSuite
